@@ -4,7 +4,9 @@ import QtQuick.Layouts 1.0
 
 Item {
     id: outputPage
+
     signal closeWindow()
+    signal save()
 
     ColumnLayout {
         id: columnLayout
@@ -43,7 +45,7 @@ Item {
             Button {
                 id: saveButton
                 text: qsTr("save")
-                onClicked: m_codeGen.saveCode()
+                onClicked: outputPage.save()
             }
 
             Button {

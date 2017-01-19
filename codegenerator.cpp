@@ -168,9 +168,25 @@ QString CodeGenerator::generateCpp()
     return l_cCode;
 }
 
-void CodeGenerator::saveCode()
+void CodeGenerator::saveCode(QUrl p_directoryName)
 {
+    //QString l_directoryName = QFileDialog::getExistingDirectory(this, tr("save file"), QString(), QFileDialog::ShowDirsOnly) + "/";
 
+    QFile l_headerFile(p_directoryName.toLocalFile() + "/" + m_name.toLower() + ".h");
+    if(l_headerFile.open(QIODevice::ReadWrite))
+    {
+        QTextStream stream(&l_headerFile);
+        stream << m_generatedHpp << endl;
+        l_headerFile.close();
+    }
+
+    QFile l_sourceFile(p_directoryName.toLocalFile() + "/" + m_name.toLower() + ".cpp");
+    if(l_sourceFile.open(QIODevice::ReadWrite))
+    {
+        QTextStream stream(&l_sourceFile);
+        stream << m_generatedCpp << endl;
+        l_sourceFile.close();
+    }
 }
 
 void CodeGenerator::updateHeader()

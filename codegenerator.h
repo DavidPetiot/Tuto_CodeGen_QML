@@ -71,7 +71,7 @@ signals:
 
 public slots:
     void generateCode();
-    void saveCode();
+    void saveCode(QUrl p_directoryName);
     void updateHeader();
 
 private:

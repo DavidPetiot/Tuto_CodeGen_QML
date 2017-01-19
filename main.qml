@@ -23,7 +23,12 @@ ApplicationWindow {
         visible: m_codeGen.outputDialogVisibility
 
         contentItem: CodeOutput{
-            onCloseWindow: outputDialog.close()
+            onCloseWindow:
+                outputDialog.close()
+            onSave: {
+                outputDialog.close()
+                fileDialog.open()
+            }
         }
     }
 
@@ -36,6 +41,16 @@ ApplicationWindow {
     Connections{
         target: m_codeGen
         onErrorChanged: popup.open()
+    }
+
+    FileDialog{
+        id: fileDialog
+        title: "Please choose a folder"
+        folder: shortcuts.home
+        selectFolder: true
+        onAccepted: {
+            m_codeGen.saveCode(fileDialog.folder)
+        }
     }
 
 }
