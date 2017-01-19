@@ -21,9 +21,10 @@ ApplicationWindow {
         width: 400
         height: 300
         visible: m_codeGen.outputDialogVisibility
-        contentItem: CodeOutput{}
-        standardButtons: StandardButton.Save | StandardButton.Cancel
-        onAccepted: m_codeGen.saveCode()
+
+        contentItem: CodeOutput{
+            onCloseWindow: outputDialog.close()
+        }
     }
 
     MessageDialog{
@@ -36,4 +37,5 @@ ApplicationWindow {
         target: m_codeGen
         onErrorChanged: popup.open()
     }
+
 }

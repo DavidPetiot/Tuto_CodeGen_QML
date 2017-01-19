@@ -4,29 +4,53 @@ import QtQuick.Layouts 1.0
 
 Item {
     id: outputPage
+    signal closeWindow()
 
-    TabView {
+    ColumnLayout {
+        id: columnLayout
         anchors.fill: parent
-        tabsVisible: true
-        Tab{
-            id: tab
-            title: qsTr("Hpp")
-            TextArea {
-                id: hppOutput
-                anchors.fill: parent
-                text: m_codeGen.hppCode
+
+        TabView {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            tabsVisible: true
+            Tab{
+                id: tab
+                title: qsTr("Hpp")
+                TextArea {
+                    id: hppOutput
+                    anchors.fill: parent
+                    text: m_codeGen.hppCode
+                }
+
             }
 
+            Tab{
+                title: qsTr("Cpp")
+                TextArea {
+                    id: cppOutput
+                    anchors.fill: parent
+                    text: m_codeGen.cppCode
+                }
+
+            }
         }
 
-        Tab{
-            title: qsTr("Cpp")
-            TextArea {
-                id: cppOutput
-                anchors.fill: parent
-                text: m_codeGen.cppCode
+        RowLayout {
+            id: rowLayout
+            Layout.alignment: Qt.AlignRight
+
+            Button {
+                id: saveButton
+                text: qsTr("save")
+                onClicked: m_codeGen.saveCode()
             }
 
+            Button {
+                id: closeButton
+                text: qsTr("close")
+                onClicked: outputPage.closeWindow()
+            }
         }
     }
 
