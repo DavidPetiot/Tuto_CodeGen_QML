@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include <QQmlComponent>
 #include <QQmlProperty>
+#include <QTextStream>
 
 CodeGenerator::CodeGenerator(QQmlApplicationEngine *engine, QObject *parent)
     : QObject(parent)
