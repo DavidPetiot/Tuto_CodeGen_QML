@@ -128,7 +128,7 @@ QString CodeGenerator::generateHpp()
     if(m_headerProtectionChecked)
     {
         l_hCode += "#ifndef " + m_headerProtection + "\n";
-        l_hCode += "#define " + m_headerProtection + "\n";
+        l_hCode += "#define " + m_headerProtection + "\n\n";
     }
 
     //class
@@ -164,7 +164,22 @@ QString CodeGenerator::generateHpp()
 
 QString CodeGenerator::generateCpp()
 {
-    QString l_cCode = "cpp not yet generated";
+    QString l_cCode;
+
+    //includes
+    l_cCode += "#include \"" + m_name.toLower() + ".h\"\n\n";
+
+    //constructor
+    l_cCode += m_name + "::" + m_name +"()\n";
+    if(!m_motherClass.isEmpty())
+    {
+        l_cCode += "    :" + m_motherClass + "()\n";
+    }
+    l_cCode += "{\n    \\\\TODO\n}\n\n";
+
+    //destructor
+    l_cCode += m_name + "::~" + m_name + "()\n{\n}\n\n";
+
     return l_cCode;
 }
 
