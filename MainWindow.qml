@@ -134,15 +134,26 @@ Item {
             GridLayout {
                 anchors.fill: parent
 
+                Label {
+                    text: qsTr("&Author")
+                    Layout.row: 0; Layout.column: 0
+                }
+
                 TextField {
                     id: author
                     font.family: "Courier"
                     Layout.fillWidth: true
                     placeholderText: qsTr("author")
-                    Layout.row: 0; Layout.column: 0
+                    Layout.row: 0; Layout.column: 1
                     onTextChanged: {
                         m_codeGen.author = text
                     }
+                }
+
+                Label {
+                    text: qsTr("&Role")
+                    Layout.alignment: Qt.AlignTop
+                    Layout.row: 1; Layout.column: 0
                 }
 
                 TextArea {
@@ -150,11 +161,13 @@ Item {
                     font.family: "Courier"
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.row: 1; Layout.column: 0
+                    Layout.row: 1; Layout.column: 1
                     onTextChanged: {
                         m_codeGen.classRole = text
                     }
                 }
+
+
             }
         }
 
